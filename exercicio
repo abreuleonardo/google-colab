@@ -38,3 +38,24 @@ if hash_dex == '09cba8ad9c7c5247fe340bbfb76cc63951c7839eaa493889e51fda70a3215713
   print("Mensagem recebida integra")
 else:
   print("Mensagem comprometida")   
+
+
+--------------------------------------------------------------------------
+
+
+import hashlib
+
+# nome do meu arquivo
+file_name = "artigo.txt"
+
+hash_object = hashlib.sha256()
+
+with open(file_name, 'rb') as file:
+    parte = file.read(4096)
+    while parte:
+        hash_object.update(parte)
+        parte = file.read(4096)
+
+hex_digest = hash_object.hexdigest()
+print(hex_digest)
+
