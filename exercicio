@@ -59,3 +59,49 @@ with open(file_name, 'rb') as file:
 hex_digest = hash_object.hexdigest()
 print(hex_digest)
 
+
+
+-------------------------------------------------------------------------
+
+
+import hashlib
+
+# Mensagem original
+original_message = "Aula 03 da disciplina de segurança da informação"
+
+# Calcula o hash SHA-256 da mensagem original
+hash_object = hashlib.sha256()
+hash_object.update(original_message.encode('utf-8'))
+original_hash = hash_object.hexdigest()
+
+# Simulando a transmissão da mensagem (geralmente, você enviaria a mensagem e o hash)
+received_message = "Aula 03 da disciplina de segurança da informação"
+
+# Calcula o hash SHA-256 da mensagem recebida
+hash_object = hashlib.sha256()
+hash_object.update(received_message.encode('utf-8'))
+received_hash = hash_object.hexdigest()
+
+# Verifica se os hashes são iguais
+if received_hash == original_hash:
+    print("Mensagem recebida integra")
+else:
+    print("Mensagem comprometida")
+
+# Exemplo de hashing de arquivo
+def calculate_file_hash(file_name):
+    hash_object = hashlib.sha256()
+
+    with open(file_name, 'rb') as file:
+        chunk = file.read(4096)
+        while chunk:
+            hash_object.update(chunk)
+            chunk = file.read(4096)
+
+    return hash_object.hexdigest()
+
+file_name = "artigo.txt"
+file_hash = calculate_file_hash(file_name)
+print("Hash do arquivo:", file_hash)
+
+
