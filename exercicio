@@ -1,0 +1,40 @@
+#hashlib
+import hashlib
+
+#mensagem que você deseja garantir a integtridade da informação
+data = "Aula 03 da disciplina de segurança da informação"
+
+#hash sha256 ou sha512
+hash_object = hashlib.sha256()
+
+#atualizo o objeto com os dados que tenho interesse em transmitir e verificar a integridade
+hash_object.update(data.encode('utf-8'))
+
+#obtem o hash em formato de hexadecimal
+hash_dex = hash_object.hexdigest()
+
+print(hash_dex)
+
+
+----------------------------------------------------------------------------------------------------
+
+receiver = "Aula 03 da disciplina de segurança da informação" 
+
+#hashlib
+import hashlib
+
+#hash sha256 ou sha512
+hash_object = hashlib.sha256()
+
+#atualizo o objeto com os dados que tenho interesse em transmitir e verificar a integridade
+hash_object.update(receiver.encode('utf-8'))
+
+#obtem o hash em formato de hexadecimal
+hash_dex = hash_object.hexdigest()
+
+print(hash_dex)
+
+if hash_dex == '09cba8ad9c7c5247fe340bbfb76cc63951c7839eaa493889e51fda70a3215713':
+  print("Mensagem recebida integra")
+else:
+  print("Mensagem comprometida")   
